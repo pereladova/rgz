@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block RGZ %}РГЗ 5 семестр
+<div style="display: inline-block; position: relative; margin-left: 60%; color: white; text-decoration: none; top: 0px; font-size: 24px; margin-bottom: 30px;">
+    <label style="font-size: 24px;">
+        Кинотеатр
+    </label>
+    <a href="/osnovnaiu" style="border: 0px solid; margin-left: 40px; text-decoration: none; color: white;">Сеансы</a>
+    <a href="/login" style="border: 1px solid; border-radius: 8px; padding: 5px; margin-left: 50px; text-decoration: none; color: white;">Войти</a></li>
+    <a href="/register" style="border: 1px solid; border-radius: 8px; padding: 5px; color: white; background-color: blue; text-decoration: none; ">Зарегистрироваться</a>
+    <label>{{ username }}</label>
+    <a href="/osnovnaiu/logout"><div>Выход</div></a>
+</div>
+<style>
+    .error {
+        border: 1px solid;
+        color: white;
+        border-radius: 5px;
+        background-color: red;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+<body>
+    <h1>Места в кинотеатре</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Ряд</th>
+                <th>Колонка</th>
+                <th>Занято</th>
+                <th>Пользователь</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for place in places %}
+                <tr>
+                    <td>{{ place.row }}</td>
+                    <td>{{ place.column }}</td>
+                    <td>{{ place.occupied ? 'Да' : 'Нет' }}</td>
+                    <td>{{ place.user_name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block RGZ %}РГЗ 5 семестр
+<div style="display: inline-block; position: relative; margin-left: 58%; color: white; text-decoration: none; top: 0px; font-size: 24px;">
+    <label style="font-size: 24px;">
+        Кинотеатр
+    </label>
+    <a href="/add" style="border: 0px solid; margin-left: 40px; text-decoration: none; color: white;">Сеанс</a>    
+    <a href="/login" style="border: 1px solid; border-radius: 8px; padding: 5px; margin-left: 50px; text-decoration: none; color: white;">Войти</a></li>
+    <a href="/register" style="border: 1px solid; border-radius: 8px; padding: 5px; color: white; background-color: rgb(149, 150, 250); text-decoration: none;">Зарегистрироваться</a>
+    <label>{{ username }}</label>
+    <a style="color: red; font-size: 12px;" href="/osnovnaiu/logout"><div>Выход</div></a>
+</div>
+
+
+{% endblock %}
+
+{% block main %}
+    <body>
+        <h1>Главная страница кинотеатра</h1>
+        {# Выводим список сеансов #}
+        {% for session in sessions %}
+            <div style="border: 1px solid; border-radius: 10px; height: 200px; width: 600px; margin: 20px; font-size: 24px;">
+                <p style="padding: 0 10px;">Название: {{ session.movie }}</p>
+                <p>
+                    {% if current_user.is_authenticated and current_user.is_superuser %}
+                        <p><a style="float: right; margin-right: 30px;" href="{{ url_for('osnovnaiu.edit_session', id=session.id) }}">Изменить</a></p>
+                    {% endif %}
+                </p>
+                <p style="padding: 0 10px;">Дата: {{ session.date }}</p>
+                <p>
+                    {% if current_user.is_authenticated and current_user.is_superuser %}
+                        <p><a style="color: red; float: right; margin-right: 30px;" href="{{ url_for('osnovnaiu.delete_session', id=session.id) }}">Удалить</a></p>
+                    {% endif %}
+                </p>
+                <p style="padding: 0 10px;">Время начало фильма: {{ session.time }}</p>
+                <p><a style="color: darkblue; margin-left: 10px;" href="{{ url_for('osnovnaiu.show_seats', id=session.id) }}">Забронировать места</a></p>
+            </div>
+
+        {% endfor %}
+    </body>
+{% endblock %}
+
+
+
+
+

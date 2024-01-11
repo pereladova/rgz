@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block RGZ %}РГЗ 5 семестр
+<div style="display: inline-block; position: relative; margin-left: 60%; color: white; text-decoration: none; top: 0px; font-size: 24px; margin-bottom: 30px;">
+    <label style="font-size: 24px;">
+        Кинотеатр
+    </label>
+    <a href="/osnovnaiu" style="border: 0px solid; margin-left: 40px; text-decoration: none; color: white;">Сеансы</a>
+    <a href="/login" style="border: 1px solid; border-radius: 8px; padding: 5px; margin-left: 50px; text-decoration: none; color: white;">Войти</a></li>
+    <a href="/register" style="border: 1px solid; border-radius: 8px; padding: 5px; color: white; background-color: rgb(149, 150, 250); text-decoration: none; ">Зарегистрироваться</a>
+</div>
+
+<style>
+    .error {
+        border: 1px solid;
+        color: white;
+        border-radius: 5px;
+        background-color: red;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+    <form action="/login" method="post" style="margin-left: 20px;">
+        <h1>Авторизация</h1>
+        <div><label for="login">Логин</label></div>
+        <input class="text_input_form" type="text" name="login" placeholder="Пользователь">
+        <div><label for="password">Пароль</label></div>
+        <input  class="text_input_form" type="password" name="password" placeholder="Пароль">
+
+        <div><button class="text_input_form bl_5_6" type="submit" style="height: 50px; width: 90px; margin: 20px;">Войти</button></div>
+        <div class="error"><span>{{errors}}</span></div>
+    </form>
+{% endblock %}
